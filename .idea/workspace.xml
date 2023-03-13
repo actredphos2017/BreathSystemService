@@ -4,19 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a0a8c0f-ce8c-4939-a036-3d30cec26750" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/RequestHandler.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/RequestMode.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/SocketServer.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/SocketSession.kt" afterDir="false" />
+    <list default="true" id="6a0a8c0f-ce8c-4939-a036-3d30cec26750" name="变更" comment="Socket请求处理">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/DatabaseEntrance.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/RequestHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/RequestHandler.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/RequestMode.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/RequestMode.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/SocketServer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SocketServer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/SocketSession.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SocketSession.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,13 +46,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
@@ -67,6 +62,29 @@
       <option name="presentableId" value="Default" />
       <updated>1678374659402</updated>
     </task>
+    <task id="LOCAL-00001" summary="Socket请求处理">
+      <created>1678379804159</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1678379804159</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Socket请求处理" />
+    <option name="LAST_COMMIT_MESSAGE" value="Socket请求处理" />
   </component>
 </project>

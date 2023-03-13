@@ -6,25 +6,24 @@ class SocketSession(
 
     var available: Boolean = true
 
-    var requestType: String? = null
-
-    var requestHandler: RequestHandler? = null
-
     fun acceptHolder() = Thread {
         try {
-            val inputStream = socket.getInputStream()
-            val buf = ByteArray(1024 * 1024)
-            val len = inputStream.read(buf)
-            requestType = String(buf, 0, len)
-            println(requestType)
+            var len: Int
+            ByteArray(1024 * 1024).also {
+                socket.getInputStream().run {
+                    len = read(it)
+                }
+            }.also {
+                RequestHandler(String(it, 0, len).apply {
+                    Globals.logCat.println(this)
+                }, socket).start()
+            }
 
-            requestHandler = RequestHandler(requestType)
-
-        } catch (_: Exception) {
-
+        } catch (e: Exception) {
+            e.printStackTrace(Globals.logCat)
         }
         socket.close()
         available = false
-        println("Session Stop!")
+        Globals.logCat.println("Session Stop!")
     }.start()
 }

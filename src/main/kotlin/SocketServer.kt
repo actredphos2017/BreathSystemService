@@ -14,11 +14,10 @@ class SocketServer(
     }
 
     fun startAccept() {
-        println("Start Listening...")
-        while (!gonnaStop) {
-            val session = SocketSession(server.accept())
-            println("Connect Successfully! Session Created!")
-            session.acceptHolder()
-        }
+        Globals.logCat.println("Start Listening...")
+        while (!gonnaStop)
+            SocketSession(server.accept().apply {
+                Globals.logCat.println("Connect Successfully! Remote ip: $inetAddress Session Created!")
+            }).acceptHolder()
     }
 }

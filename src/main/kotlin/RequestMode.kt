@@ -1,3 +1,3 @@
 enum class RequestMode {
-    upload, obtain, verification
+    upload, obtain
 }
