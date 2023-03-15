@@ -9,22 +9,32 @@ class RequestHandler(
     var requestCode: String? = null
         private set
 
+    var requestBody: String? = null
+        private set
+
     var outputData: String? = null
 
+
     init {
-        if (requestType?.startsWith(Globals.verificationPrefix) == true)
-            requestCode = requestType.substring(startIndex = 2)
-        else throw Exception("Wrong data input!")
+        if (requestType?.startsWith(Globals.verificationPrefix) != true)
+            throw Exception("Wrong data input!")
+        val mainData = requestType.substring(startIndex = Globals.verificationPrefix.length).split("|")
+        if(mainData.size != 2)
+            throw Exception("Wrong data input!")
+        requestCode = mainData[0]
+        requestBody = mainData[1]
     }
 
     fun start() {
-        var len: Int
-        Globals.codeDictionary.getOrDefault(requestCode) {
-            throw Exception("Error Request Code: $it")
-        }(String(ByteArray(1024 * 1024).also {
-            socket.getInputStream().run { len = read(it) }
-        }, 0, len)).toByteArray().also {
-            socket.getOutputStream().write(it)
+        val work = Globals.codeDictionary.getOrElse(requestCode!!) {
+            throw Exception("Error Request Code: $requestCode")
         }
+        val response = work(requestBody!!).also {
+            Globals.logCat.println("Work Done! Response Get: $it")
+        }.toByteArray()
+
+        val socketOutputStream = socket.getOutputStream()
+        socketOutputStream.write(response)
+        socketOutputStream.close()
     }
 }

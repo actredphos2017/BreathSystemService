@@ -3,18 +3,29 @@ import java.sql.SQLException
 import java.util.Scanner
 
 object Globals {
-    val verificationPrefix = "GZW_BS "
+    const val DatabaseDriver = "com.mysql.cj.jdbc.Driver"
+    const val DatabaseUrl = "jdbc:mysql://127.0.0.1:3306"
+    const val DatabaseUserName = "root"
+    const val DatabasePassword = "helloworld"
+    const val verificationPrefix = "GZW_BS "
     var dbEntrance: DatabaseEntrance? = null
     var logCat: PrintStream = System.out
-    var codeDictionary: Map<String, (String)->String> = mapOf(
 
+    var codeDictionary: Map<String, (String)->String> = mapOf(
+        "1001" to RequestProcessor.registerNewAccount,
+        "1002" to RequestProcessor.loginAccount
     )
 }
 
-fun main(args: Array<String>) {
+fun main() {
 
     try {
-        Globals.dbEntrance = DatabaseEntrance()
+        Globals.dbEntrance = DatabaseEntrance(
+            driverName = Globals.DatabaseDriver,
+            url = Globals.DatabaseUrl,
+            userName = Globals.DatabaseUserName,
+            password = Globals.DatabasePassword
+        )
     } catch (e: SQLException) {
         e.printStackTrace(Globals.logCat)
         Globals.logCat.println("Database Entrance Create Failed!")
@@ -41,7 +52,6 @@ fun main(args: Array<String>) {
                     server.gonnaStop = true
                     return
                 }
-
                 else -> {
                     Globals.logCat.println("Unknown Command")
                 }

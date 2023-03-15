@@ -3,7 +3,6 @@ import java.net.Socket
 class SocketSession(
     private val socket: Socket
 ) {
-
     var available: Boolean = true
 
     fun acceptHolder() = Thread {
@@ -15,11 +14,12 @@ class SocketSession(
                 }
             }.also {
                 RequestHandler(String(it, 0, len).apply {
-                    Globals.logCat.println(this)
+                    Globals.logCat.println("Require Code Get: $this")
                 }, socket).start()
             }
 
         } catch (e: Exception) {
+            Globals.logCat.print("Work Error: ")
             e.printStackTrace(Globals.logCat)
         }
         socket.close()
