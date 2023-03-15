@@ -4,19 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a0a8c0f-ce8c-4939-a036-3d30cec26750" name="变更" comment="连接数据库，优化代码">
-      <change afterPath="$PROJECT_DIR$/DatabaseInit.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/RequestProcessor.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/gsonClasses/AccountInfo.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/gsonClasses/VerifyResponse.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/myUtils/SQLState.kt" afterDir="false" />
+    <list default="true" id="6a0a8c0f-ce8c-4939-a036-3d30cec26750" name="变更" comment="数据库、两个事务">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/DatabaseEntrance.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/DatabaseEntrance.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/RequestHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/RequestHandler.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/RequestMode.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/SocketSession.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SocketSession.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/RequestProcessor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/RequestProcessor.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +90,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678723878022</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="数据库、两个事务">
+      <created>1678885757723</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1678885757723</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -108,7 +105,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -117,6 +126,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Socket请求处理" />
     <MESSAGE value="连接数据库，优化代码" />
-    <option name="LAST_COMMIT_MESSAGE" value="连接数据库，优化代码" />
+    <MESSAGE value="数据库、两个事务" />
+    <option name="LAST_COMMIT_MESSAGE" value="数据库、两个事务" />
   </component>
 </project>

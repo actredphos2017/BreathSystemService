@@ -45,7 +45,7 @@ object RequestProcessor {
                 e.printStackTrace(this)
             }
         }
-        if (success.first) jsonProcessor.toJson(VerifyResponse.success(success.second))
+        if (success.first) jsonProcessor.toJson(VerifyResponse.success())
         else {
             Globals.logCat.println("Request Work Failed: $failReason")
             jsonProcessor.toJson(VerifyResponse.failed(failReason.toString()))
