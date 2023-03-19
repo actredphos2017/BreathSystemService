@@ -3,17 +3,18 @@ import java.sql.SQLException
 import java.util.Scanner
 
 object Globals {
-    const val DatabaseDriver = "com.mysql.cj.jdbc.Driver"
-    const val DatabaseUrl = "jdbc:mysql://127.0.0.1:3306"
-    const val DatabaseUserName = "root"
-    const val DatabasePassword = "helloworld"
+    const val databaseDriver = "com.mysql.cj.jdbc.Driver"
+    const val databaseUrl = "jdbc:mysql://127.0.0.1:3306"
+    const val databaseUserName = "root"
+    const val databasePassword = "helloworld"
     const val verificationPrefix = "GZW_BS "
+    const val databaseName = "BreathSystem"
     var dbEntrance: DatabaseEntrance? = null
     var logCat: PrintStream = System.out
 
     var codeDictionary: Map<String, (String)->String> = mapOf(
         "1001" to RequestProcessor.registerNewAccount,
-        "1002" to RequestProcessor.loginAccount
+        "1002" to RequestProcessor.loginAccount,
     )
 }
 
@@ -21,10 +22,10 @@ fun main() {
 
     try {
         Globals.dbEntrance = DatabaseEntrance(
-            driverName = Globals.DatabaseDriver,
-            url = Globals.DatabaseUrl,
-            userName = Globals.DatabaseUserName,
-            password = Globals.DatabasePassword
+            driverName = Globals.databaseDriver,
+            url = Globals.databaseUrl,
+            userName = Globals.databaseUserName,
+            password = Globals.databasePassword
         )
     } catch (e: SQLException) {
         e.printStackTrace(Globals.logCat)

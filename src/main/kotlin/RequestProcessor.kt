@@ -9,15 +9,20 @@ object RequestProcessor {
 
     val registerNewAccount: (String) -> String = {
         Globals.logCat.println("Start Register Account")
+
         val registerInfo = try {
-            jsonProcessor.fromJson(it, AccountInfo::class.java)
+            jsonProcessor.fromJson(it, AccountInfo::class.java) // 解析收到的 Json 数据，判断合法性
         } catch (_: Exception) {
             Globals.logCat.println("客户端提供了不合法的请求体")
             throw Exception("客户端提供了不合法的请求体")
         }
-        val success: Boolean
+
         val failReason = ByteArrayOutputStream()
+        // 创建一个输入流，类似 C++ 的 stringstream
+        // 用于获取失败后的错误信息
+
         val errorOs = PrintStream(failReason)
+        // 为流创建一个 PrintStream 接口，以实现像终端打印的效果
 
         val sameResult = Globals.dbEntrance!!
             .Select()
@@ -25,9 +30,10 @@ object RequestProcessor {
             .forColumns("*")
             .withCondition("id", registerInfo.id)
             .commit(errorOs)
+        // 链式生成、运行 SQL 语句
 
-        success = if (sameResult == null)
-            throw Exception("数据库错误！")
+        val success = if (sameResult == null)
+            false
         else if (sameResult.next()) {
             Globals.logCat.println("Account Register Error: 用户名已存在 for ${registerInfo.id}")
             errorOs.println("用户名已存在")
@@ -68,7 +74,7 @@ object RequestProcessor {
             .commit(errorOs)
 
         val success = if (selectResult == null)
-            throw Exception("搜索失败！")
+            Pair(false, errorOs)
         else if (selectResult.next())
             Pair(true, "")
         else {
@@ -79,7 +85,7 @@ object RequestProcessor {
                 .withCondition("id", loginInfo.id)
                 .commit(errorOs)
 
-            if (selectResult == null) throw Exception("搜索失败！")
+            if (selectResult == null) Pair(false, errorOs)
             else if (selectResult.next()) Pair(false, "密码错误！")
             else Pair(false, "账号不存在！")
         }

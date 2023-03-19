@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a0a8c0f-ce8c-4939-a036-3d30cec26750" name="变更" comment="fix bug">
+    <list default="true" id="6a0a8c0f-ce8c-4939-a036-3d30cec26750" name="变更" comment="优化数据库访问类">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DatabaseInit.sql" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseInit.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/DatabaseEntrance.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/DatabaseEntrance.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/RequestProcessor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/RequestProcessor.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/myUtils/SQLState.kt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +107,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678898999592</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="优化数据库访问类">
+      <created>1679227793999</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1679227793999</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -137,6 +145,7 @@
     <MESSAGE value="连接数据库，优化代码" />
     <MESSAGE value="数据库、两个事务" />
     <MESSAGE value="fix bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix bug" />
+    <MESSAGE value="优化数据库访问类" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化数据库访问类" />
   </component>
 </project>
