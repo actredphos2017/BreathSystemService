@@ -1,5 +1,3 @@
-import gsonClasses.AccountInfo
-import myUtils.SQLState
 import java.io.PrintStream
 import java.sql.*
 
@@ -12,7 +10,6 @@ class DatabaseEntrance(
 
     private var connection: Connection? = null
     private var statement: Statement? = null
-    private var resultSet: ResultSet? = null
 
     private fun createStatement(errorOs: PrintStream = System.out): Boolean = try {
         statement = connection?.createStatement()
@@ -41,85 +38,127 @@ class DatabaseEntrance(
         Globals.logCat.println("Database Connect Successfully!")
     }
 
-    fun accountRegister(newAccountInfo: AccountInfo, errorOs: PrintStream): Boolean =
-        if (!createStatement(errorOs)) {
-            errorOs.println("数据库错误！请联系管理员")
-            false
-        } else try {
-            newAccountInfo.run {
-                resultSet = statement!!.executeQuery(
-                    SQLState
-                        .Select()
-                        .from("accounts")
-                        .forColumns("*")
-                        .withCondition("id", newAccountInfo.id)
-                        .toString().also {
-                            Globals.logCat.println("Running in SQL: $it")
-                        }
-                )
-                if (resultSet!!.next()) {
-                    errorOs.println("用户名已存在")
-                    Globals.logCat.println("Account Register Error: 用户名已存在 for ${toVarchar(id)}")
-                    false
-                } else {
-                    statement!!.execute(
-                        SQLState
-                            .Insert()
-                            .into("accounts")
-                            .forColumns("name", "id", "password")
-                            .withItems(newAccountInfo.id, newAccountInfo.id, newAccountInfo.password)
-                            .toString().also {
-                                Globals.logCat.println("Running in SQL: $it")
-                            }
-                    )
-                    Globals.logCat.println("Account Register Successfully: 新用户创建 for $id")
-                    true
-                }
-            }
-        } catch (e: Exception) {
-            e.printStackTrace(errorOs)
-            false
+    inner class Select() {
+        private var tableName: String? = null
+        private var columns: List<String>? = null
+        private var conditions: ArrayList<Pair<String, Any>> = ArrayList()
+
+        fun from(table: String): Select {
+            tableName = table
+            return this
         }
 
-    fun accountSignIn(accountInfo: AccountInfo, errorOs: PrintStream): Pair<Boolean, String> =
-        if (!createStatement(errorOs)) {
-            errorOs.println("数据库错误！请联系管理员")
-            Pair(false, "")
-        } else try {
-            accountInfo.let {
-                resultSet = statement!!.executeQuery(
-                    SQLState
-                        .Select()
-                        .from("accounts")
-                        .forColumns("equipmentIdentificationCode")
-                        .withCondition("id", accountInfo.id)
-                        .withCondition("password", accountInfo.password)
-                        .toString().also {
-                            Globals.logCat.println("Running in SQL: $it")
-                        }
-                )
-                if (resultSet!!.next())
-                    Pair(true, resultSet!!.getString(1))
-                else {
-                    resultSet = statement!!.executeQuery(
-                        SQLState
-                            .Select()
-                            .from("accounts")
-                            .withCondition("id", accountInfo.id)
-                            .toString().also {
-                                Globals.logCat.println("Running in SQL: $it")
-                            }
-                    )
-                    if (resultSet!!.next()) errorOs.println("密码错误")
-                    else errorOs.println("用户名不存在")
-                    Pair(false, "")
-                }
-            }
-        } catch (_: SQLException) {
-            Pair(false, "")
+        fun forColumns(vararg column: String): Select {
+            columns = column.toList()
+            return this
         }
 
-    fun accountCancellation(userName: String, errorOs: PrintStream): Boolean = TODO()
+        fun withCondition(column: String, value: Any): Select {
+            conditions.add(Pair(column, value))
+            return this
+        }
 
-    private fun toVarchar(string: String) = "\'${string}\'"
+        fun commit(errorOs: PrintStream = Globals.logCat): ResultSet? = if (tableName == null) {
+            errorOs.println("Insert: 缺少参数")
+            null
+        } else if (!createStatement(errorOs)) {
+            errorOs.println("数据库错误！请联系管理员")
+            null
+        } else try {
+            statement!!.executeQuery(
+                StringBuilder().apply {
+                    append("select ")
+                    if (columns == null)
+                        append("*")
+                    else for ((index, value) in columns!!.withIndex())
+                        if (index == 0)
+                            append(value)
+                        else
+                            append(", $value")
+                    append(" from $tableName")
+                    if (conditions.isNotEmpty()) {
+                        append(" where ")
+                        for ((index, value) in conditions.withIndex()) {
+                            if (value.second is String) {
+                                if (index == 0)
+                                    append("${value.first} = ${toVarchar(value.second as String)}")
+                                else
+                                    append(" and ${value.first} = ${toVarchar(value.second as String)}")
+                            } else {
+                                if (index == 0)
+                                    append("${value.first} = ${value.second}")
+                                else
+                                    append(" and ${value.first} = ${value.second}")
+                            }
+                        }
+                    }
+                }.toString()
+            )
+        } catch (_: Exception) {
+            null
+        }
+    }
+
+    inner class Insert() {
+        private var tableName: String? = null
+        private var columns: List<String>? = null
+        private var values: List<Any>? = null
+
+        fun into(table: String): Insert {
+            tableName = table
+            return this
+        }
+
+        fun forColumns(vararg column: String): Insert {
+            columns = column.toList()
+            return this
+        }
+
+        fun withItems(vararg item: Any): Insert {
+            values = item.toList()
+            return this
+        }
+
+        fun commit(errorOs: PrintStream = Globals.logCat): Boolean =
+            if (tableName == null || columns == null || values == null) {
+                errorOs.println("Insert: 缺少参数")
+                false
+            } else if (columns!!.size != values!!.size) {
+                errorOs.println("Insert: 参数数与值不匹配")
+                false
+            } else try {
+                statement!!.execute(
+                    StringBuilder().apply {
+                        append("insert into $tableName(")
+                        for ((index, value) in columns!!.withIndex())
+                            if (index == 0)
+                                append(value)
+                            else
+                                append(", $value")
+                        append(") values (")
+                        for ((index, value) in values!!.withIndex()) {
+                            if (value is String) {
+                                if (index == 0)
+                                    append(toVarchar(value))
+                                else
+                                    append(", ${toVarchar(value)}")
+                            } else {
+                                if (index == 0)
+                                    append(value)
+                                else
+                                    append(", $value")
+                            }
+                        }
+                        append(")")
+                    }.toString()
+                )
+                true
+            } catch (_: Exception) {
+                errorOs.println("Insert: 搜索失败，请检查搜索语句")
+                false
+            }
+    }
+
+    fun toVarchar(string: String): String = "\'$string\'"
+
 }
