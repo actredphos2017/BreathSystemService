@@ -9,10 +9,12 @@ object Globals {
     const val databasePassword = "helloworld"
     const val verificationPrefix = "GZW_BS "
     const val databaseName = "BreathSystem"
+    const val serverHost = "0.0.0.0"
+    const val serverPort = 21301
     var dbEntrance: DatabaseEntrance? = null
     var logCat: PrintStream = System.out
 
-    var codeDictionary: Map<String, (String)->String> = mapOf(
+    var codeDictionary: Map<String, (String) -> String> = mapOf(
         "1001" to RequestProcessor.registerNewAccount,
         "1002" to RequestProcessor.loginAccount,
     )
@@ -35,7 +37,10 @@ fun main() {
 
     Globals.logCat.println("Server Start!")
 
-    val server = SocketServer("0.0.0.0", 21301)
+    val server = SocketServer(
+        host = Globals.serverHost,
+        port = Globals.serverPort
+    )
     val serverThread = Thread {
         try {
             server.startAccept()
@@ -47,12 +52,13 @@ fun main() {
     val scanner = Scanner(System.`in`)
     while (true)
         scanner.nextLine().run {
-            when(this) {
+            when (this) {
                 "stop" -> {
                     Globals.logCat.println("Trying stop server...")
                     server.gonnaStop = true
                     return
                 }
+
                 else -> {
                     Globals.logCat.println("Unknown Command")
                 }

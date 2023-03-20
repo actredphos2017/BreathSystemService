@@ -11,18 +11,15 @@ object RequestProcessor {
         Globals.logCat.println("Start Register Account")
 
         val registerInfo = try {
-            jsonProcessor.fromJson(it, AccountInfo::class.java) // 解析收到的 Json 数据，判断合法性
+            jsonProcessor.fromJson(it, AccountInfo::class.java)
         } catch (_: Exception) {
             Globals.logCat.println("客户端提供了不合法的请求体")
             throw Exception("客户端提供了不合法的请求体")
         }
 
         val failReason = ByteArrayOutputStream()
-        // 创建一个输入流，类似 C++ 的 stringstream
-        // 用于获取失败后的错误信息
 
         val errorOs = PrintStream(failReason)
-        // 为流创建一个 PrintStream 接口，以实现像终端打印的效果
 
         val sameResult = Globals.dbEntrance!!
             .Select()
@@ -30,7 +27,6 @@ object RequestProcessor {
             .forColumns("*")
             .withCondition("id", registerInfo.id)
             .commit(errorOs)
-        // 链式生成、运行 SQL 语句
 
         val success = if (sameResult == null)
             false

@@ -16,8 +16,10 @@ class SocketServer(
     fun startAccept() {
         Globals.logCat.println("Start Listening...")
         while (!gonnaStop)
-            SocketSession(server.accept().apply {
-                Globals.logCat.println("Connect Successfully! Remote ip: $inetAddress Session Created!")
-            }).acceptHolder()
+            SocketSession(
+                server.accept().apply {
+                    Globals.logCat.println("Connect Successfully! Remote ip: $inetAddress Session Created!")
+                }
+            ).acceptHolder()
     }
 }

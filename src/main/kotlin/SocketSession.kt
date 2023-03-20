@@ -3,7 +3,6 @@ import java.net.Socket
 class SocketSession(
     private val socket: Socket
 ) {
-    var available: Boolean = true
 
     fun acceptHolder() = Thread {
         try {
@@ -21,9 +20,9 @@ class SocketSession(
         } catch (e: Exception) {
             Globals.logCat.print("Work Error: ")
             e.printStackTrace(Globals.logCat)
+        } finally {
+            socket.close()
         }
-        socket.close()
-        available = false
         Globals.logCat.println("Session Stop!")
     }.start()
 }

@@ -3,17 +3,12 @@ import java.net.Socket
 
 class RequestHandler(
     requestType: String? = null,
-    val socket: Socket
+    private val socket: Socket
 ) {
 
-    var requestCode: String? = null
-        private set
+    private var requestCode: String? = null
 
-    var requestBody: String? = null
-        private set
-
-    var outputData: String? = null
-
+    private var requestBody: String? = null
 
     init {
         if (requestType?.startsWith(Globals.verificationPrefix) != true)

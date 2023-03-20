@@ -6,10 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="6a0a8c0f-ce8c-4939-a036-3d30cec26750" name="变更" comment="优化数据库访问类">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseInit.sql" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseInit.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/DatabaseEntrance.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/DatabaseEntrance.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/RequestHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/RequestHandler.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/RequestProcessor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/RequestProcessor.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/SocketServer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SocketServer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/SocketSession.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SocketSession.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +115,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679227793999</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="优化数据库访问类">
+      <created>1679230486093</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1679230486093</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
