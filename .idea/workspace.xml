@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a0a8c0f-ce8c-4939-a036-3d30cec26750" name="变更" comment="优化数据库访问类">
+    <list default="true" id="3c01a1da-ec49-490e-9929-f9b6d4838f6b" name="变更" comment="Framework">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Globals.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/RemoteTask.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/SocketHelper.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/RequestHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/RequestHandler.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/RequestProcessor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/RequestProcessor.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/SocketServer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SocketServer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/SocketSession.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SocketSession.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +22,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Enum" />
+        <option value="Kotlin Interface" />
         <option value="Kotlin Class" />
       </list>
     </option>
@@ -154,6 +156,7 @@
     <MESSAGE value="数据库、两个事务" />
     <MESSAGE value="fix bug" />
     <MESSAGE value="优化数据库访问类" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化数据库访问类" />
+    <MESSAGE value="Framework" />
+    <option name="LAST_COMMIT_MESSAGE" value="Framework" />
   </component>
 </project>

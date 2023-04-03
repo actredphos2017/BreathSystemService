@@ -1,5 +1,5 @@
-import java.lang.Exception
 import java.net.Socket
+import kotlin.Exception
 
 class RequestHandler(
     requestType: String? = null,
@@ -14,7 +14,7 @@ class RequestHandler(
         if (requestType?.startsWith(Globals.verificationPrefix) != true)
             throw Exception("Wrong data input!")
         val mainData = requestType.substring(startIndex = Globals.verificationPrefix.length).split("|")
-        if(mainData.size != 2)
+        if (mainData.size != 2)
             throw Exception("Wrong data input!")
         requestCode = mainData[0]
         requestBody = mainData[1]
@@ -24,12 +24,15 @@ class RequestHandler(
         val work = Globals.codeDictionary.getOrElse(requestCode!!) {
             throw Exception("Error Request Code: $requestCode")
         }
-        val response = work(requestBody!!).also {
-            Globals.logCat.println("Work Done! Response Get: $it")
-        }.toByteArray()
 
-        val socketOutputStream = socket.getOutputStream()
-        socketOutputStream.write(response)
-        socketOutputStream.close()
+        try {
+            val response = work.onTaskStart(requestBody!!, SocketHelper(socket))
+            Globals.logCat.println("Work Done!")
+        } catch (e: Exception) {
+            work.onTaskFailed(requestBody!!, SocketHelper(socket), e)
+        } finally {
+            socket.close()
+            work.onTaskClose(requestBody!!)
+        }
     }
 }
